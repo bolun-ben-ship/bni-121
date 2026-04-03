@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BNI 121 Profile — Bolun Liu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --white: #ffffff;
+      --surface2: #f0ede6;
+      --border: #e2ddd4;
+      --border2: #d0cac0;
+      --gold: #b8860b;
+      --gold-mid: #c9960d;
+      --gold-light: #fdf6e3;
+      --navy: #1a2535;
+      --blue: #1d5fa8;
+      --blue-light: #e8f0fb;
+      --green: #1e7a50;
+      --green-light: #e6f5ee;
+      --orange: #c05a00;
+      --orange-light: #fff0e0;
+      --red: #c0392b;
+      --red-light: #fcecea;
+      --muted: #7a8699;
+      --muted2: #a0aab7;
+      --text: #2a3444;
+      --radius: 10px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans SC', 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page { max-width: 960px; margin: 0 auto; padding: 56px 32px 96px; }
+
+    /* Masthead */
+    .masthead {
+      border-bottom: 3px solid var(--navy);
+      padding-bottom: 28px;
+      margin-bottom: 52px;
+    }
+    .client-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .masthead-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+    .masthead h1 {
+      font-size: clamp(26px, 4vw, 44px); font-weight: 900;
+      line-height: 1.1; color: var(--navy); letter-spacing: -1.5px;
+    }
+    .masthead h1 span { color: var(--gold); }
+    .masthead-right { text-align: right; flex-shrink: 0; }
+    .masthead-right .date { font-size: 13px; font-weight: 600; color: var(--navy); display: block; margin-bottom: 6px; }
+    .doc-badge {
+      display: inline-block; background: var(--navy); color: #fff;
+      border-radius: 6px; padding: 3px 10px;
+      font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .masthead-sub { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.5; font-weight: 500; }
+
+    /* Quick Ref */
+    .quick-ref {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 52px;
+    }
+    .qr-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+    }
+    .qr-card .qr-label {
+      font-size: 9px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .qr-card .qr-val {
+      font-size: 22px; font-weight: 900; color: var(--navy); letter-spacing: -0.5px;
+    }
+    .qr-card .qr-val.gold { color: var(--gold); }
+    .qr-card .qr-sub { font-size: 11px; color: var(--muted); margin-top: 5px; line-height: 1.4; font-weight: 500; }
+
+    /* Section Titles */
+    section { margin-bottom: 52px; }
+    .sec-title { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .sec-title .roman { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0; font-family: 'Montserrat', sans-serif; }
+    .sec-title h2 { font-size: 18px; font-weight: 700; color: var(--navy); }
+    .sec-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* Prose / Generic Cards */
+    .prose-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+    }
+    .prose-card p { font-size: 14px; color: var(--text); line-height: 1.7; margin-bottom: 14px; font-weight: 400; }
+    .prose-card p:last-child { margin-bottom: 0; }
+
+    /* GAINS Grid Strategy */
+    .gains-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .gain-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 28px;
+    }
+    .gain-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--navy); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .gain-title span { color: var(--gold); font-size: 16px; font-weight: 900; }
+    .gain-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .gain-list li {
+      font-size: 13px; color: var(--text); padding-left: 14px; position: relative; line-height: 1.6;
+    }
+    .gain-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+    /* Rules & Callouts (adapted for Profile info) */
+    .rule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .rule-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 18px;
+    }
+    .rule-card .r-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+    }
+    .info-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+    .info-row:last-child { margin-bottom: 0; }
+    .info-key { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 700;}
+    .info-val { font-size: 14px; font-weight: 500; color: var(--navy); }
+
+    /* Blockquote / Focus text */
+    .bq {
+      border-left: 3px solid var(--gold);
+      background: var(--gold-light);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .bq p { font-size: 14px; font-weight: 500; font-style: italic; color: var(--navy); line-height: 1.6; margin-bottom: 8px !important; }
+    .bq .attr { font-size: 11px; font-weight: 700; color: var(--gold); font-style: normal; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* Customers & Referrals */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .check-list {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .check-list-head {
+      padding: 12px 18px;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,0.9);
+      font-family: 'Montserrat', sans-serif;
+    }
+    .check-list-head.green { background: var(--green); }
+    .check-list-head.red { background: var(--red); }
+    .check-list-head.navy { background: var(--navy); }
+    .check-list-body { padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+    .cli-item {
+      font-size: 13px; color: var(--text); padding-left: 20px; position: relative; line-height: 1.5; font-weight: 500;
+    }
+    .cli-item.good::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+    .cli-item.bad::before  { content: '✗'; position: absolute; left: 0; color: var(--red); font-weight: 700; }
+    .cli-item.neutral::before { content: '•'; position: absolute; left: 0; color: var(--gold); font-weight: 900; font-size: 16px; top: -3px; }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .masthead     { animation: fadeUp 0.5s ease both; }
+    .quick-ref    { animation: fadeUp 0.5s 0.08s ease both; }
+    section       { animation: fadeUp 0.5s 0.14s ease both; }
+
+    @media (max-width: 768px) {
+      .quick-ref { grid-template-columns: 1fr; }
+      .gains-grid { grid-template-columns: 1fr; }
+      .rule-grid { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Masthead ── -->
+  <div class="masthead">
+    <div class="client-tag">BNI O2O Profile 档案</div>
+    <div class="masthead-row">
+      <div style="display: flex; align-items: center; gap: 24px;">
+        <img src="./images/image_0_1.jpeg" alt="Bolun Liu" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--navy);" />
+        <div>
+          <h1>Bolun Liu <span>(小包子)</span></h1>
+          <p class="masthead-sub">Founder of RightClick:AI | AI Agents & Business Automation Expert<br>帮助中小企业通过AI实现业务的可视化、自动化和智能化运营。<br>We help SMEs run their business with clarity, control, and scale through AI.</p>
+        </div>
+      </div>
+      <div class="masthead-right">
+        <span class="date">Updated: 2026</span>
+        <span class="doc-badge">BNI 1-to-1</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Quick-ref ── -->
+  <div class="quick-ref">
+    <div class="qr-card">
+      <div class="qr-label">Company 公司</div>
+      <div class="qr-val gold">RightClick:AI</div>
+      <div class="qr-sub">AI Automation Partner for SMEs</div>
+    </div>
+    <div class="qr-card">
+      <div class="qr-label">Location 城市</div>
+      <div class="qr-val">Singapore</div>
+      <div class="qr-sub">Base of Operations</div>
+    </div>
+    <div class="qr-card">
+      <div class="qr-label">Core Philosophy 理念</div>
+      <div class="qr-val">Process First</div>
+      <div class="qr-sub">流程先于工具，数据先于决策</div>
+    </div>
+  </div>
+
+  <!-- ── I. 个人资料表 ── -->
+  <section>
+    <div class="sec-title"><span class="roman">I</span><h2>个人资料 Personal Profile</h2></div>
+    <div class="rule-grid">
+      <div class="rule-card">
+        <div class="r-label">基础信息 Basics</div>
+        <div class="info-row">
+          <span class="info-key">姓名 Name</span>
+          <span class="info-val">Bolun Liu | 刘博伦 (小包子)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">配偶 Spouse</span>
+          <span class="info-val">徐紫微 Xu Ziwei</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">孩子 Children</span>
+          <span class="info-val">无 None</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">宠物 Pets</span>
+          <span class="info-val">两只猫一条狗 2 Cats & 1 Dog</span>
+          <div style="display: flex; gap: 8px; margin-top: 8px;">
+            <img src="./images/image_1_1.jpeg" style="width: 48px; height: 48px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border);" onerror="this.style.display='none'">
+            <img src="./images/image_1_2.jpeg" style="width: 48px; height: 48px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border);" onerror="this.style.display='none'">
+            <img src="./images/image_1_3.jpeg" style="width: 48px; height: 48px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border);" onerror="this.style.display='none'">
+            <img src="./images/image_1_4.jpeg" style="width: 48px; height: 48px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border);" onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="info-key">居住城市 Location</span>
+          <span class="info-val">新加坡(25年) Singapore (25 Years)</span>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="r-label">特写 Insights</div>
+        <div class="info-row">
+          <span class="info-key">特质 Traits</span>
+          <span class="info-val">处女座 Virgo | MBTI: ENFP / TJ</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">业余爱好 Hobbies</span>
+          <span class="info-val">Vibe Coding, 打游戏 Gaming, 播客 Podcasts, 动漫 Anime, 健身 Gym, 摄影 Photography</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">最强烈的愿望 Burning Desire</span>
+          <span class="info-val">人生短暂枯燥，但生命可以璀璨有趣<br>Life is short, living is mundane, but we choose to make it beautiful and interesting.</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">不为人知的秘密 Secret</span>
+          <span class="info-val">做过模特 Modeling, MV演员 MV Actor, 纪录片制作 Doco Filmmaker, 选秀裁判 Pageant Judge, Cosplay</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── II. GAINS 工作表 ── -->
+  <section>
+    <div class="sec-title"><span class="roman">II</span><h2>GAINS 工作表</h2></div>
+    
+    <div class="bq">
+      <p>"Most AI automation failures happen before the first tool is chosen. The bottleneck is clarity of process, not capability of technology."<br><br>“大多数AI自动化的失败都发生在选择第一个工具之前。瓶颈在于流程的清晰度，而不是技术的强大。”</p>
+      <span class="attr">— Bolun Liu, The Data Process Thinking Method</span>
+    </div>
+
+    <div class="gains-grid">
+      <!-- Goals -->
+      <div class="gain-card">
+        <div class="gain-title"><span>G</span>oals 目标</div>
+        <ul class="gain-list">
+          <li><strong>Build real value:</strong> Usable enterprise AI products for SMEs.<br>为中小企业主构建真正可用、有价值的企业级AI产品。</li>
+          <li><strong>Build an "AI COO":</strong> An intelligence layer that continuously analyzes business for instant decisions.<br>打造持续分析业务并即时提供决策答案的 "AI COO"。</li>
+          <li><strong>Long-term principle:</strong> "Do less, but do it right."<br>践行“做更少，但做正确”的原则。</li>
+        </ul>
+      </div>
+
+      <!-- Accomplishments -->
+      <div class="gain-card">
+        <div class="gain-title"><span>A</span>ccomplishments 成就</div>
+        <ul class="gain-list">
+          <li><strong>Internal AI:</strong> Built and deployed AI agents for my own company.<br>成功开发并部署了自有的AI代理系统。</li>
+          <li><strong>Client pipelines:</strong> Implemented automation and AI content pipelines for paying clients.<br>为付费客户落地自动化系统和AI驱动的内容生产管线。</li>
+          <li><strong>Full-stack:</strong> Shipped a web app with practical operational experience.<br>具备Web App发布与运营的全栈实战经验。</li>
+        </ul>
+      </div>
+
+      <!-- Interests -->
+      <div class="gain-card">
+        <div class="gain-title"><span>I</span>nterests 兴趣</div>
+        <ul class="gain-list">
+          <li><strong>Data structuring:</strong> Fundamental structural analysis of business data.<br>业务数据的底层结构化分析设计。</li>
+          <li><strong>Practical AI:</strong> Genuine, effective AI applications for SMEs.<br>AI技术在中小服务型企业运营中的真正有效场景。</li>
+          <li><strong>Empirical business:</strong> Real-world insights based on experience, not borrowed frameworks.<br>探讨基于真实经验而非借用框架的实战商业见解。</li>
+        </ul>
+      </div>
+
+      <!-- Networks -->
+      <div class="gain-card">
+        <div class="gain-title"><span>N</span>etworks 人际网络</div>
+        <ul class="gain-list">
+          <li><strong>B2B Partners:</strong> Service-based SME owners who own client relationships.<br>掌握客户关系的服务型B2B企业所有者/合伙人。</li>
+          <li><strong>Operators:</strong> Marketing/ops leaders looking for internal AI workflow upgrades.<br>寻求内化AI工作流的营销团队和运营负责人。</li>
+          <li><strong>Thinkers:</strong> Empowered, independent-thinking peers who trust data.<br>拥有独立见解并信奉实证主义的商界同行。</li>
+        </ul>
+      </div>
+
+      <!-- Skills -->
+      <div class="gain-card" style="grid-column: 1 / -1;">
+        <div class="gain-title"><span>S</span>kills 技巧</div>
+        <ul class="gain-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <li><strong>Workflows Mapping:</strong> Map Input → Output before any automation.<br>工作流架构：自动化前彻底梳理业务的“输入与输出”。</li>
+          <li><strong>API Integration:</strong> Connecting systems for seamless data pipelines.<br>API集成配置：跨越软件孤岛，搭建顺畅的数据管线。</li>
+          <li><strong>CLAUDE & Antigravity:</strong> Specialized utilization of leading AI agents.<br>CLAUDE & Antigravity：顶尖AI代理系统的重度开发与调优。</li>
+          <li><strong>AI Directing & Orchestration:</strong> Managing AI agents as functional enterprise employees.<br>AI统筹与调度：像指挥真人员工一样，调度AI大军执行复杂业务。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VISION ── -->
+  <div class="bq" style="margin-top: 0; margin-bottom: 52px; border-left-color: var(--blue); background-color: var(--blue-light); padding: 24px 28px;">
+    <p style="font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px !important; letter-spacing: -0.5px; line-height: 1.5;">
+      "The future belongs to companies that operate with 20% of their historical headcount, yet generate 10x the margins."<br><br>
+      “未来的企业范式：仅需曾经两成的人力，却能创造十倍的利润空间。”
+    </p>
+    <span class="attr" style="color: var(--blue);">— The Final End State 终极愿景</span>
+  </div>
+
+  <!-- ── III. 业务人脉圈规划表 ── -->
+  <section>
+    <div class="sec-title"><span class="roman">III</span><h2>业务人脉圈 Contact Sphere</h2></div>
+    <div class="prose-card">
+      <p>Contact spheres are non-competing businesses that naturally refer to each other. I'm looking for B2B partners who own client relationships and need a backend to execute the tech.<br>业务人脉圈是不具备竞争性但能互相引荐的业务关联。寻找拥有客户资源并需要底层技术交付执行的 B2B 合作伙伴。</p>
+      
+      <div style="margin-top: 16px; display: grid; gap: 12px;">
+        <div style="background: var(--surface2); border-left: 3px solid var(--blue); padding: 12px 16px; border-radius: 6px;">
+          <h4 style="font-size: 13px; color: var(--navy); margin-bottom: 4px;">1. Marketing Agency Partners<br>营销代理合伙人</h4>
+          <p style="font-size: 12px; color: var(--muted); line-height: 1.5; margin:0;">They have clients needing growth; I am their technical backend building powerful AI systems.<br>他们拥有大量需增长的客户，我作为技术后盾为他们构建交付强大的AI体系。</p>
+        </div>
+        <div style="background: var(--surface2); border-left: 3px solid var(--blue); padding: 12px 16px; border-radius: 6px;">
+          <h4 style="font-size: 13px; color: var(--navy); margin-bottom: 4px;">2. Business Consultants & Coaches<br>商业咨询师 / 企业教练</h4>
+          <p style="font-size: 12px; color: var(--muted); line-height: 1.5; margin:0;">After designing the strategy, we step in with automation tools and AI agents to execute it efficiently.<br>帮助客户设计蓝图后，面临落地效率难题，可引入我们的自动化工具高效执行。</p>
+        </div>
+        <div class="info-row"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── IV. 我们的旅程 ── -->
+  <section>
+    <div class="sec-title"><span class="roman">IV</span><h2>我们的旅程 Our Journey</h2></div>
+    <div class="prose-card" style="padding-bottom: 12px;">
+      
+      <div style="display: flex; flex-direction: column; gap: 24px; position: relative;">
+        <!-- Timeline Item 1 -->
+        <div style="display: flex; gap: 16px;">
+          <div style="font-weight: 800; color: var(--gold); font-size: 16px; min-width: 60px;">2019</div>
+          <div>
+            <h4 style="font-size: 14px; color: var(--navy); margin-bottom: 4px;">Video Production & Events (视频与活动制作)</h4>
+            <p style="font-size: 13px; color: var(--text); line-height: 1.5; margin-bottom: 12px;">Started when a friend from SHRI needed an events provider. We were only doing wedding photography and cosplay events, but said "why not?" Formed a corporate entity to handle government-backed projects and decided to make it work.</p>
+            <div style="display: flex; gap: 12px; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px;">
+                <img src="./images/image_8_0.png" style="height: 100px; border-radius: 6px; border: 1px solid var(--border);" onerror="this.style.display='none'">
+                <img src="./images/image_6_3.png" style="height: 100px; border-radius: 6px; border: 1px solid var(--border);" onerror="this.style.display='none'">
+                <img src="./images/image_6_4.png" style="height: 100px; border-radius: 6px; border: 1px solid var(--border);" onerror="this.style.display='none'">
+                <img src="./images/image_6_5.png" style="height: 100px; border-radius: 6px; border: 1px solid var(--border);" onerror="this.style.display='none'">
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline Item 2 -->
+        <div style="display: flex; gap: 16px;">
+          <div style="font-weight: 800; color: var(--gold); font-size: 16px; min-width: 60px;">2021</div>
+          <div>
+            <h4 style="font-size: 14px; color: var(--navy); margin-bottom: 4px;">Pivoting During COVID (疫情转型)</h4>
+            <p style="font-size: 13px; color: var(--text); line-height: 1.5;">The market became incredibly tough. Video production was unsustainable, so we successfully pivoted into digital performance marketing across Facebook, Google, and TikTok.</p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 3 -->
+        <div style="display: flex; gap: 16px;">
+          <div style="font-weight: 800; color: var(--gold); font-size: 16px; min-width: 60px;">2024+</div>
+          <div>
+            <h4 style="font-size: 14px; color: var(--navy); margin-bottom: 4px;">AI Automation & Agentic Workflows (AI智能体时代)</h4>
+            <p style="font-size: 13px; color: var(--text); line-height: 1.5;">Went incredibly deep into AI. We have now evolved into pure AI Agentic workflows, Orchestration, and deployment utilizing the cutting edge capabilities of CLAUDE and Antigravity.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── V. 客户及引荐 ── -->
+  <section>
+    <div class="sec-title"><span class="roman">V</span><h2>客户及引荐 Referrals</h2></div>
+    <p style="font-size:13px; color: var(--muted); margin-bottom: 16px; font-weight: 500;">Our core audience: SME service-based owners seeking clarity, control, and scale.<br>我们的核心受众：追求运营清晰度、控制感和扩张性的中小型服务业老板。</p>
+    
+    <div class="two-col">
+      <div class="check-list">
+        <div class="check-list-head green">好的引荐 Good Referrals</div>
+        <div class="check-list-body">
+          <div class="cli-item good"><strong>AI Consultants:</strong> Recommending strategy but needing a reliable technical backend to build and deliver the systems.<br><strong>AI咨询专家：</strong>提供前端战略咨询，需要可信的底层技术中台来进行架构部署交付。</div>
+          <div class="cli-item good"><strong>Marketing & SEO Agencies:</strong> Facing operational bottlenecks; needing AI Workflows to amplify output margins.<br><strong>营销与代运营生态：</strong>急需通过AI工作流提升极度饱和的产能，实现成倍利润扩张。</div>
+          <div class="cli-item good"><strong>Data-scattered SMEs:</strong> Operations are messy; owners want data "visible & searchable".<br><strong>卡在瓶颈期的企业主：</strong>系统数据极度分散，老板渴望实现一切核心业务数据“清晰可见”。</div>
+        </div>
+      </div>
+      <div class="check-list">
+        <div class="check-list-head red">坏的引荐 Bad Referrals</div>
+        <div class="check-list-body">
+          <div class="cli-item bad"><strong>"Copy-paste" believers:</strong> Ignoring business logic, just looking for an "AI tool".<br><strong>迷信一键生成：</strong>不关注底层逻辑，只想随便找个AI工具盲目套用的人。</div>
+          <div class="cli-item bad"><strong>Bargain hunters:</strong> Want cheap labor replacement rather than powerful systems.<br><strong>纯为省钱的外包：</strong>倾向于极低价全托管，不注重长效系统构建的客户。</div>
+          <div class="cli-item bad"><strong>Raw startups:</strong> No existing data or workflows; simply too early to automate.<br><strong>概念初创项目：</strong>缺乏数据验证和基础微流程运转，过早追求彻底AI化的阶段。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
